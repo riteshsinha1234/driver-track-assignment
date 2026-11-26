@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 Text customTxt(
   String text,
@@ -11,7 +12,7 @@ Text customTxt(
     text,
     style: TextStyle(
       color: clr,
-      fontSize: size,
+      fontSize: size.sp,
       fontWeight: weight,
       fontFamily: "PlusJakartaSans",
       letterSpacing: letterSpacing,
@@ -32,7 +33,7 @@ Text customParaTxt(
     textAlign: align,
     style: TextStyle(
       color: clr,
-      fontSize: size,
+      fontSize: size.sp,
       fontWeight: weight,
       fontFamily: "PlusJakartaSans",
       letterSpacing: letterSpacing,

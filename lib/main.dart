@@ -5,6 +5,7 @@ import 'package:driver_track/components/routers.dart';
 import 'package:driver_track/screens/splash/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sizer/sizer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,12 +23,16 @@ class MyApp extends StatelessWidget {
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {
-          return MaterialApp(
-            navigatorKey: navigatorKey,
-            debugShowCheckedModeBanner: false,
-            title: 'Driver Track',
-            theme: state.themeData,
-            home: const SplashView(),
+          return Sizer(
+            builder: (context, orientation, deviceType) {
+              return MaterialApp(
+                navigatorKey: navigatorKey,
+                debugShowCheckedModeBanner: false,
+                title: 'Driver Track',
+                theme: state.themeData,
+                home: const SplashView(),
+              );
+            },
           );
         },
       ),
