@@ -1,3 +1,4 @@
+
 import 'package:driver_track/components/colors.dart';
 import 'package:driver_track/components/text.dart';
 import 'package:driver_track/components/widget.dart';
@@ -6,6 +7,7 @@ import 'package:driver_track/screens/home/home_event.dart';
 import 'package:driver_track/screens/home/home_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sizer/sizer.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -13,10 +15,12 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final bloc = context.read<HomeBloc>();
+      if (context.mounted) {
+        final bloc = context.read<HomeBloc>();
 
-      if (bloc.state is HomeInitial) {
-        bloc.add(LoadHomeData());
+        if (bloc.state is HomeInitial) {
+          bloc.add(LoadHomeData());
+        }
       }
     });
 
@@ -47,9 +51,9 @@ class HomeView extends StatelessWidget {
                 children: [
                   Expanded(
                     child: SingleChildScrollView(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 20,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 5.w,
+                        vertical: 5.w,
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,7 +71,7 @@ class HomeView extends StatelessWidget {
                                     blueGrey,
                                     FontWeight.w500,
                                   ),
-                                  gapH(5),
+                                  gapH(1.3.w),
                                   customTxt(
                                     "DriverTrack",
                                     24,
@@ -79,24 +83,24 @@ class HomeView extends StatelessWidget {
                             ],
                           ),
 
-                          gapH(20),
+                          gapH(5.w),
 
                           // Tracking Status
                           Container(
                             width: double.infinity,
-                            padding: const EdgeInsets.all(20),
+                            padding: EdgeInsets.all(5.w),
                             decoration: BoxDecoration(
                               gradient: const LinearGradient(
                                 colors: [navyBlue, darkBlue],
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
                               ),
-                              borderRadius: BorderRadius.circular(22),
+                              borderRadius: BorderRadius.circular(5.5.w),
                               boxShadow: [
                                 BoxShadow(
                                   color: navyBlue.withValues(alpha: 0.15),
-                                  blurRadius: 18,
-                                  offset: const Offset(0, 8),
+                                  blurRadius: 4.5.w,
+                                  offset: Offset(0, 2.w),
                                 ),
                               ],
                             ),
@@ -106,14 +110,14 @@ class HomeView extends StatelessWidget {
                                 Row(
                                   children: [
                                     Container(
-                                      height: 9,
-                                      width: 9,
+                                      height: 2.3.w,
+                                      width: 2.3.w,
                                       decoration: const BoxDecoration(
                                         color: cyan,
                                         shape: BoxShape.circle,
                                       ),
                                     ),
-                                    gapW(8),
+                                    gapW(2.w),
                                     customTxt(
                                       "TRACKING OVERVIEW",
                                       11,
@@ -124,7 +128,7 @@ class HomeView extends StatelessWidget {
                                   ],
                                 ),
 
-                                gapH(20),
+                                gapH(5.w),
 
                                 customTxt(
                                   "Your Drivers,",
@@ -133,7 +137,7 @@ class HomeView extends StatelessWidget {
                                   FontWeight.w700,
                                 ),
 
-                                gapH(5),
+                                gapH(1.3.w),
 
                                 customTxt(
                                   "Your Business, Under Control.",
@@ -142,7 +146,7 @@ class HomeView extends StatelessWidget {
                                   FontWeight.w400,
                                 ),
 
-                                gapH(25),
+                                gapH(6.w),
 
                                 Row(
                                   children: [
@@ -154,8 +158,8 @@ class HomeView extends StatelessWidget {
                                       ),
                                     ),
                                     Container(
-                                      height: 48,
-                                      width: 1,
+                                      height: 12.w,
+                                      width: 0.25.w,
                                       color: white.withValues(alpha: 0.15),
                                     ),
                                     Expanded(
@@ -171,7 +175,7 @@ class HomeView extends StatelessWidget {
                             ),
                           ),
 
-                          gapH(20),
+                          gapH(5.w),
 
                           // Section heading
                           customTxt(
@@ -181,7 +185,7 @@ class HomeView extends StatelessWidget {
                             FontWeight.w700,
                           ),
 
-                          gapH(15),
+                          gapH(3.8.w),
 
                           // Statistics
                           Row(
@@ -194,7 +198,7 @@ class HomeView extends StatelessWidget {
                                   electricBlue,
                                 ),
                               ),
-                              gapW(12),
+                              gapW(3.w),
                               Expanded(
                                 child: statCard(
                                   Icons.route_outlined,
@@ -206,7 +210,7 @@ class HomeView extends StatelessWidget {
                             ],
                           ),
 
-                          gapH(12),
+                          gapH(3.w),
 
                           Row(
                             children: [
@@ -218,7 +222,7 @@ class HomeView extends StatelessWidget {
                                   grn,
                                 ),
                               ),
-                              gapW(12),
+                              gapW(3.w),
                               Expanded(
                                 child: statCard(
                                   Icons.pending_actions_outlined,
@@ -230,7 +234,7 @@ class HomeView extends StatelessWidget {
                             ],
                           ),
 
-                          gapH(20),
+                          gapH(5.w),
 
                           // Quick Actions
                           Row(
@@ -251,7 +255,7 @@ class HomeView extends StatelessWidget {
                             ],
                           ),
 
-                          gapH(15),
+                          gapH(3.8.w),
 
                           Row(
                             children: [
@@ -262,7 +266,7 @@ class HomeView extends StatelessWidget {
                                   electricBlue,
                                 ),
                               ),
-                              gapW(12),
+                              gapW(3.w),
                               Expanded(
                                 child: actionCard(
                                   Icons.location_searching_rounded,
@@ -273,7 +277,7 @@ class HomeView extends StatelessWidget {
                             ],
                           ),
 
-                          gapH(12),
+                          gapH(3.w),
 
                           Row(
                             children: [
@@ -284,7 +288,7 @@ class HomeView extends StatelessWidget {
                                   grn,
                                 ),
                               ),
-                              gapW(12),
+                              gapW(3.w),
                               Expanded(
                                 child: actionCard(
                                   Icons.settings_outlined,
@@ -295,7 +299,7 @@ class HomeView extends StatelessWidget {
                             ],
                           ),
 
-                          gapH(30),
+                          gapH(7.5.w),
 
                           // Recent Activity
                           customTxt(
@@ -305,17 +309,17 @@ class HomeView extends StatelessWidget {
                             FontWeight.w700,
                           ),
 
-                          gapH(15),
+                          gapH(3.8.w),
 
                           Container(
                             width: double.infinity,
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 28,
-                              horizontal: 15,
+                            padding: EdgeInsets.symmetric(
+                              vertical: 7.w,
+                              horizontal: 3.8.w,
                             ),
                             decoration: BoxDecoration(
                               color: white,
-                              borderRadius: BorderRadius.circular(18),
+                              borderRadius: BorderRadius.circular(4.5.w),
                               border: Border.all(
                                 color: blueGrey.withValues(alpha: 0.15),
                               ),
@@ -324,17 +328,17 @@ class HomeView extends StatelessWidget {
                               children: [
                                 Icon(
                                   Icons.history_rounded,
-                                  size: 38,
+                                  size: 10.w,
                                   color: blueGrey.withValues(alpha: 0.7),
                                 ),
-                                gapH(10),
+                                gapH(2.5.w),
                                 customTxt(
                                   "No Recent Activity",
                                   14,
                                   navyBlue,
                                   FontWeight.w600,
                                 ),
-                                gapH(5),
+                                gapH(1.3.w),
                                 customParaTxt(
                                   "Your recent driver activities will appear here.",
                                   11,
@@ -346,7 +350,7 @@ class HomeView extends StatelessWidget {
                             ),
                           ),
 
-                          gapH(20),
+                          gapH(5.w),
                         ],
                       ),
                     ),

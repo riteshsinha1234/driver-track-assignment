@@ -1,6 +1,7 @@
 import 'package:driver_track/components/colors.dart';
 import 'package:driver_track/components/text.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 // Screen size
 SizedBox gapH(double value) => SizedBox(height: value);
@@ -14,11 +15,11 @@ Widget customButton(ht, wt, btnclr, bdrclr, rdus, clk, widget) {
   return MaterialButton(
     highlightColor: splashCyan,
     elevation: 0.0,
-    height: ht,
-    minWidth: wt,
+    height: ht.h,
+    minWidth: wt.w,
     color: btnclr,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(rdus),
+      borderRadius: BorderRadius.circular(rdus.w),
       side: BorderSide(color: bdrclr),
     ),
     onPressed: clk,
@@ -52,7 +53,7 @@ Widget customBody({
 // Bottom Navigation
 Widget bottomNavigation() {
   return Container(
-    padding: const EdgeInsets.symmetric(vertical: 13),
+    padding: EdgeInsets.symmetric(vertical: 3.2.h),
     decoration: BoxDecoration(
       color: white,
       border: Border(top: BorderSide(color: blueGrey.withValues(alpha: 0.15))),
@@ -73,8 +74,8 @@ Widget navItem(IconData icon, String title, bool selected) {
   return Column(
     mainAxisSize: MainAxisSize.min,
     children: [
-      Icon(icon, size: 23, color: selected ? electricBlue : blueGrey),
-      gapH(5),
+      Icon(icon, size: 6.w, color: selected ? electricBlue : blueGrey),
+      gapH(1.2.w),
       customTxt(
         title,
         10,
@@ -88,16 +89,16 @@ Widget navItem(IconData icon, String title, bool selected) {
 // Action Card
 Widget actionCard(IconData icon, String title, Color color) {
   return Container(
-    padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 12),
+    padding: EdgeInsets.symmetric(vertical: 4.5.w, horizontal: 3.w),
     decoration: BoxDecoration(
       color: white,
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(4.w),
       border: Border.all(color: blueGrey.withValues(alpha: 0.15)),
     ),
     child: Column(
       children: [
-        Icon(icon, size: 27, color: color),
-        gapH(10),
+        Icon(icon, size: 7.w, color: color),
+        gapH(2.5.w),
         customTxt(title, 12, navyBlue, FontWeight.w600),
       ],
     ),
@@ -107,27 +108,27 @@ Widget actionCard(IconData icon, String title, Color color) {
 // Statistics Card
 Widget statCard(IconData icon, String title, String value, Color color) {
   return Container(
-    padding: const EdgeInsets.all(15),
+    padding: EdgeInsets.all(4.w),
     decoration: BoxDecoration(
       color: white,
-      borderRadius: BorderRadius.circular(18),
+      borderRadius: BorderRadius.circular(4.5.w),
       border: Border.all(color: blueGrey.withValues(alpha: 0.15)),
     ),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          height: 38,
-          width: 38,
+          height: 10.w,
+          width: 10.w,
           decoration: BoxDecoration(
             color: color.withValues(alpha: 0.12),
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(3.w),
           ),
-          child: Icon(icon, color: color, size: 21),
+          child: Icon(icon, color: color, size: 5.5.w),
         ),
-        gapH(15),
+        gapH(4.w),
         customTxt(value, 21, navyBlue, FontWeight.w800),
-        gapH(5),
+        gapH(1.3.w),
         customTxt(title, 12, blueGrey, FontWeight.w500),
       ],
     ),
@@ -138,14 +139,14 @@ Widget statCard(IconData icon, String title, String value, Color color) {
 Widget overviewItem(IconData icon, String title, String value) {
   return Row(
     children: [
-      Icon(icon, color: splashCyan, size: 25),
-      gapW(10),
+      Icon(icon, color: splashCyan, size: 6.w),
+      gapW(2.5.w),
       Expanded(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             customTxt(value, 21, white, FontWeight.w800),
-            gapH(3),
+            gapH(0.8.w),
             customTxt(title, 11, blueGrey, FontWeight.w500),
           ],
         ),

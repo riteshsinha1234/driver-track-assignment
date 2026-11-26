@@ -9,6 +9,7 @@ import 'package:driver_track/screens/splash/splash_event.dart';
 import 'package:driver_track/screens/splash/splash_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sizer/sizer.dart';
 
 class SplashView extends StatelessWidget {
   const SplashView({super.key});
@@ -48,18 +49,16 @@ class SplashView extends StatelessWidget {
               children: [
                 // Top Branding
                 Padding(
-                  padding: const EdgeInsets.only(top: 35),
+                  padding: EdgeInsets.only(top: 4.h),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.gps_fixed_rounded,
                         color: splashCyan,
-                        size: 17,
+                        size: 4.5.w,
                       ),
-
-                      gapW(8),
-
+                      gapW(2.w),
                       customTxt(
                         "SMART LOCATION TRACKING",
                         11,
@@ -88,20 +87,23 @@ class SplashView extends StatelessWidget {
                               children: [
                                 // Logo Container
                                 Container(
-                                  height: 175,
-                                  width: 175,
-                                  padding: const EdgeInsets.all(10),
+                                  height: 43.w,
+                                  width: 43.w,
+                                  padding: EdgeInsets.all(2.5.w),
                                   decoration: BoxDecoration(
                                     color: logoBackground,
-                                    borderRadius: BorderRadius.circular(100),
-                                    border: Border.all(color: logoBorder),
+                                    borderRadius: BorderRadius.circular(50.w),
+                                    border: Border.all(
+                                      color: logoBorder,
+                                      width: 0.2.w,
+                                    ),
                                     boxShadow: [
                                       BoxShadow(
                                         color: splashCyan.withValues(
                                           alpha: 0.12,
                                         ),
-                                        blurRadius: 45,
-                                        spreadRadius: 5,
+                                        blurRadius: 11.w,
+                                        spreadRadius: 1.3.w,
                                       ),
                                     ],
                                   ),
@@ -111,7 +113,7 @@ class SplashView extends StatelessWidget {
                                   ),
                                 ),
 
-                                gapH(35),
+                                gapH(8.w),
 
                                 // App Name
                                 customTxt(
@@ -122,7 +124,7 @@ class SplashView extends StatelessWidget {
                                   letterSpacing: 1,
                                 ),
 
-                                gapH(12),
+                                gapH(2.5.w),
 
                                 // Tagline
                                 customTxt(
@@ -133,7 +135,7 @@ class SplashView extends StatelessWidget {
                                   letterSpacing: 2.5,
                                 ),
 
-                                gapH(12),
+                                gapH(2.5.w),
 
                                 // Description
                                 customParaTxt(
@@ -155,20 +157,16 @@ class SplashView extends StatelessWidget {
 
                 // Bottom Loading Section
                 Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: 35,
-                    left: 30,
-                    right: 30,
-                  ),
+                  padding: EdgeInsets.only(bottom: 4.h, left: 7.w, right: 7.w),
                   child: BlocBuilder<SplashBloc, SplashState>(
                     builder: (context, state) {
                       return Column(
                         children: [
                           // Loading Indicator
-                          const SizedBox(
-                            height: 28,
-                            width: 28,
-                            child: CircularProgressIndicator(
+                          SizedBox(
+                            height: 7.w,
+                            width: 7.w,
+                            child: const CircularProgressIndicator(
                               strokeWidth: 2.5,
                               valueColor: AlwaysStoppedAnimation<Color>(
                                 splashCyan,
@@ -176,7 +174,7 @@ class SplashView extends StatelessWidget {
                             ),
                           ),
 
-                          gapH(20),
+                          gapH(5.w),
 
                           // Loading Text
                           customTxt(
@@ -189,7 +187,7 @@ class SplashView extends StatelessWidget {
                             letterSpacing: 1.5,
                           ),
 
-                          gapH(25),
+                          gapH(6.w),
 
                           // Footer
                           customTxt(
