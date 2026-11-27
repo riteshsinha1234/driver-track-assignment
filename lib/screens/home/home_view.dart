@@ -1,11 +1,9 @@
 import 'package:driver_track/components/colors.dart';
 import 'package:driver_track/components/text.dart';
 import 'package:driver_track/components/widget.dart';
-import 'package:driver_track/components/routers.dart';
 import 'package:driver_track/screens/home/home_bloc.dart';
 import 'package:driver_track/screens/home/home_event.dart';
 import 'package:driver_track/screens/home/home_state.dart';
-import 'package:driver_track/screens/tracking/tracking_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
@@ -30,8 +28,16 @@ class HomeView extends StatelessWidget {
       child: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
           if (state is HomeLoading) {
-            return const Center(
-              child: CircularProgressIndicator(color: splashCyan),
+            return Container(
+              width: double.infinity,
+              height: double.infinity,
+              color: splashBackground,
+              child: const Center(
+                child: CircularProgressIndicator(
+                  color: splashCyan,
+                  strokeWidth: 3.5,
+                ),
+              ),
             );
           }
 
@@ -460,14 +466,6 @@ class HomeView extends StatelessWidget {
                         ],
                       ),
                     ),
-                  ),
-
-                  // Bottom Navigation
-                  bottomNavigationBar(
-                    context,
-                    selectedIndex: 0,
-                    onHomeTap: () {},
-                    onTrackingTap: () => routePush(const TrackingView()),
                   ),
                 ],
               ),
