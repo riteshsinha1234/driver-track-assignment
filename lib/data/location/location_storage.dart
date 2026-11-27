@@ -42,7 +42,8 @@ class LocationStorage {
     return _locationBox.length;
   }
 
-  // Get number of pending records.
+  // Get number o
+  //f pending records.
   int getPendingCount() {
     return getPendingLocations().length;
   }

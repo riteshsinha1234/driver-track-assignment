@@ -26,12 +26,12 @@ class HomeView extends StatelessWidget {
     });
 
     return customBody(
-      backgroundColor: iceWhite,
+      backgroundColor: splashBackground,
       child: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
           if (state is HomeLoading) {
             return const Center(
-              child: CircularProgressIndicator(color: electricBlue),
+              child: CircularProgressIndicator(color: splashCyan),
             );
           }
 
@@ -65,14 +65,14 @@ class HomeView extends StatelessWidget {
                             customTxt(
                               "Welcome Back,",
                               14,
-                              blueGrey,
+                              splashText,
                               FontWeight.w500,
                             ),
                             gapH(1.3.w),
                             customTxt(
                               "DriverTrack",
                               20,
-                              navyBlue,
+                              white,
                               FontWeight.w800,
                             ),
                           ],
@@ -80,15 +80,13 @@ class HomeView extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.all(2.5.w),
                           decoration: BoxDecoration(
-                            color: white,
+                            color: logoBackground,
                             shape: BoxShape.circle,
-                            border: Border.all(
-                              color: blueGrey.withValues(alpha: 0.15),
-                            ),
+                            border: Border.all(color: logoBorder),
                           ),
                           child: Icon(
                             Icons.local_shipping_outlined,
-                            color: electricBlue,
+                            color: splashCyan,
                             size: 5.5.w,
                           ),
                         ),
@@ -103,7 +101,6 @@ class HomeView extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Start from Tracking Overview here
                           gapH(5.w),
 
                           // Tracking Overview
@@ -112,14 +109,15 @@ class HomeView extends StatelessWidget {
                             padding: EdgeInsets.all(5.w),
                             decoration: BoxDecoration(
                               gradient: const LinearGradient(
-                                colors: [navyBlue, darkBlue],
+                                colors: [darkBlue, splashGradient],
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
                               ),
                               borderRadius: BorderRadius.circular(5.5.w),
+                              border: Border.all(color: logoBorder),
                               boxShadow: [
                                 BoxShadow(
-                                  color: navyBlue.withValues(alpha: 0.15),
+                                  color: black.withValues(alpha: 0.2),
                                   blurRadius: 4.w,
                                   offset: Offset(0, 2.w),
                                 ),
@@ -150,7 +148,7 @@ class HomeView extends StatelessWidget {
                                     customTxt(
                                       state.isTracking ? "LIVE" : "STOPPED",
                                       12,
-                                      state.isTracking ? grn : orang,
+                                      state.isTracking ? splashCyan : orang,
                                       FontWeight.w700,
                                     ),
                                   ],
@@ -201,11 +199,9 @@ class HomeView extends StatelessWidget {
                               vertical: 4.w,
                             ),
                             decoration: BoxDecoration(
-                              color: white,
+                              color: logoBackground,
                               borderRadius: BorderRadius.circular(4.w),
-                              border: Border.all(
-                                color: blueGrey.withValues(alpha: 0.15),
-                              ),
+                              border: Border.all(color: logoBorder),
                             ),
                             child: Row(
                               children: [
@@ -213,7 +209,7 @@ class HomeView extends StatelessWidget {
                                   state.isConnected
                                       ? Icons.wifi_rounded
                                       : Icons.wifi_off_rounded,
-                                  color: state.isConnected ? grn : orang,
+                                  color: state.isConnected ? splashCyan : orang,
                                   size: 6.w,
                                 ),
                                 gapW(2.w),
@@ -227,7 +223,7 @@ class HomeView extends StatelessWidget {
                                             ? "Internet Connected"
                                             : "You are Offline",
                                         16,
-                                        navyBlue,
+                                        white,
                                         FontWeight.w700,
                                       ),
                                       gapH(1.w),
@@ -236,7 +232,7 @@ class HomeView extends StatelessWidget {
                                             ? "Ready to synchronize records"
                                             : "Locations are saved locally",
                                         12.5,
-                                        blueGrey,
+                                        splashText,
                                         FontWeight.w400,
                                       ),
                                     ],
@@ -259,7 +255,7 @@ class HomeView extends StatelessWidget {
                           customTxt(
                             "Location Tracking",
                             18,
-                            navyBlue,
+                            white,
                             FontWeight.w700,
                           ),
 
@@ -269,11 +265,9 @@ class HomeView extends StatelessWidget {
                             width: screenWidth(context),
                             padding: EdgeInsets.all(4.w),
                             decoration: BoxDecoration(
-                              color: white,
+                              color: logoBackground,
                               borderRadius: BorderRadius.circular(4.5.w),
-                              border: Border.all(
-                                color: blueGrey.withValues(alpha: 0.15),
-                              ),
+                              border: Border.all(color: logoBorder),
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -282,7 +276,7 @@ class HomeView extends StatelessWidget {
                                   children: [
                                     Icon(
                                       Icons.my_location_rounded,
-                                      color: electricBlue,
+                                      color: splashCyan,
                                       size: 6.w,
                                     ),
                                     gapW(2.w),
@@ -292,7 +286,7 @@ class HomeView extends StatelessWidget {
                                             ? "Location tracking is active"
                                             : "Location tracking is stopped",
                                         14,
-                                        navyBlue,
+                                        white,
                                         FontWeight.w600,
                                       ),
                                     ),
@@ -304,8 +298,8 @@ class HomeView extends StatelessWidget {
                                 customButton(
                                   40.0,
                                   screenWidth(context) / 2,
-                                  state.isTracking ? red : electricBlue,
-                                  state.isTracking ? red : electricBlue,
+                                  state.isTracking ? red : splashCyan,
+                                  state.isTracking ? red : splashCyan,
                                   8.0,
                                   () {
                                     context.read<HomeBloc>().add(
@@ -345,7 +339,7 @@ class HomeView extends StatelessWidget {
                           customTxt(
                             "Quick Overview",
                             18,
-                            navyBlue,
+                            white,
                             FontWeight.w700,
                           ),
 
@@ -404,23 +398,21 @@ class HomeView extends StatelessWidget {
                             width: screenWidth(context),
                             padding: EdgeInsets.all(4.w),
                             decoration: BoxDecoration(
-                              color: white,
+                              color: logoBackground,
                               borderRadius: BorderRadius.circular(4.5.w),
-                              border: Border.all(
-                                color: blueGrey.withValues(alpha: 0.15),
-                              ),
+                              border: Border.all(color: logoBorder),
                             ),
                             child: Row(
                               children: [
                                 Container(
                                   padding: EdgeInsets.all(3.w),
                                   decoration: BoxDecoration(
-                                    color: electricBlue.withValues(alpha: 0.1),
+                                    color: splashCyan.withValues(alpha: 0.12),
                                     borderRadius: BorderRadius.circular(3.w),
                                   ),
                                   child: Icon(
                                     Icons.sync_rounded,
-                                    color: electricBlue,
+                                    color: splashCyan,
                                     size: 6.w,
                                   ),
                                 ),
@@ -433,14 +425,14 @@ class HomeView extends StatelessWidget {
                                       customTxt(
                                         "Data Sync",
                                         16,
-                                        navyBlue,
+                                        white,
                                         FontWeight.w700,
                                       ),
                                       gapH(1.w),
                                       customTxt(
                                         "${state.pendingLocations} records waiting to sync",
                                         14,
-                                        blueGrey,
+                                        splashText,
                                         FontWeight.w400,
                                       ),
                                     ],
@@ -457,8 +449,8 @@ class HomeView extends StatelessWidget {
                                         }
                                       : null,
                                   icon: const Icon(Icons.sync),
-                                  color: electricBlue,
-                                  disabledColor: blueGrey,
+                                  color: splashCyan,
+                                  disabledColor: loadingText,
                                 ),
                               ],
                             ),
@@ -470,7 +462,7 @@ class HomeView extends StatelessWidget {
                     ),
                   ),
 
-                  // Shared Bottom Navigation from widget.dart
+                  // Bottom Navigation
                   bottomNavigationBar(
                     context,
                     selectedIndex: 0,

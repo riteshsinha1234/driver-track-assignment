@@ -16,7 +16,7 @@ class TrackingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return customBody(
-      backgroundColor: iceWhite,
+      backgroundColor: splashBackground,
       child: BlocProvider(
         create: (context) =>
             TrackingBloc(locationRepository: context.read())
@@ -41,14 +41,14 @@ class TrackingView extends StatelessWidget {
                             customTxt(
                               "DriverTrack",
                               14,
-                              blueGrey,
+                              splashText,
                               FontWeight.w500,
                             ),
                             gapH(1.3.w),
                             customTxt(
                               "Tracking History",
                               20,
-                              navyBlue,
+                              white,
                               FontWeight.w800,
                             ),
                           ],
@@ -56,15 +56,13 @@ class TrackingView extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.all(2.5.w),
                           decoration: BoxDecoration(
-                            color: white,
+                            color: logoBackground,
                             shape: BoxShape.circle,
-                            border: Border.all(
-                              color: blueGrey.withValues(alpha: 0.15),
-                            ),
+                            border: Border.all(color: logoBorder),
                           ),
                           child: Icon(
                             Icons.location_history_rounded,
-                            color: electricBlue,
+                            color: splashCyan,
                             size: 5.5.w,
                           ),
                         ),
@@ -79,9 +77,7 @@ class TrackingView extends StatelessWidget {
                         if (state is TrackingLoading ||
                             state is TrackingInitial) {
                           return const Center(
-                            child: CircularProgressIndicator(
-                              color: electricBlue,
-                            ),
+                            child: CircularProgressIndicator(color: splashCyan),
                           );
                         }
 
@@ -98,7 +94,8 @@ class TrackingView extends StatelessWidget {
 
                         if (state is TrackingLoaded) {
                           return RefreshIndicator(
-                            color: electricBlue,
+                            color: splashCyan,
+                            backgroundColor: logoBackground,
                             onRefresh: () async {
                               context.read<TrackingBloc>().add(
                                 RefreshTrackingRecords(),
@@ -122,13 +119,13 @@ class TrackingView extends StatelessWidget {
                                     customTxt(
                                       "Recent Activity",
                                       18,
-                                      navyBlue,
+                                      white,
                                       FontWeight.w700,
                                     ),
                                     customTxt(
                                       "${state.totalRecords} Records",
                                       13,
-                                      electricBlue,
+                                      splashCyan,
                                       FontWeight.w700,
                                     ),
                                   ],
@@ -145,35 +142,31 @@ class TrackingView extends StatelessWidget {
                                       horizontal: 4.w,
                                     ),
                                     decoration: BoxDecoration(
-                                      color: white,
+                                      color: logoBackground,
                                       borderRadius: BorderRadius.circular(
                                         4.5.w,
                                       ),
-                                      border: Border.all(
-                                        color: blueGrey.withValues(alpha: 0.15),
-                                      ),
+                                      border: Border.all(color: logoBorder),
                                     ),
                                     child: Column(
                                       children: [
                                         Icon(
                                           Icons.history_rounded,
                                           size: 11.w,
-                                          color: blueGrey.withValues(
-                                            alpha: 0.7,
-                                          ),
+                                          color: loadingText,
                                         ),
                                         gapH(2.5.w),
                                         customTxt(
                                           "No Tracking Records",
                                           15,
-                                          navyBlue,
+                                          white,
                                           FontWeight.w600,
                                         ),
                                         gapH(1.3.w),
                                         customParaTxt(
                                           "Start location tracking to see your recorded locations here.",
                                           12,
-                                          blueGrey,
+                                          splashText,
                                           FontWeight.w400,
                                           TextAlign.center,
                                         ),
@@ -182,70 +175,103 @@ class TrackingView extends StatelessWidget {
                                   )
                                 else
                                   ...state.locations.map((record) {
+                                    final localTime = record.timestamp
+                                        .toLocal();
+
+                                    final date =
+                                        "${localTime.year.toString().padLeft(4, '0')}-"
+                                        "${localTime.month.toString().padLeft(2, '0')}-"
+                                        "${localTime.day.toString().padLeft(2, '0')}";
+
+                                    final time =
+                                        "${localTime.hour.toString().padLeft(2, '0')}:"
+                                        "${localTime.minute.toString().padLeft(2, '0')}:"
+                                        "${localTime.second.toString().padLeft(2, '0')}";
+
                                     return Container(
                                       width: double.infinity,
                                       margin: EdgeInsets.only(bottom: 2.5.w),
                                       padding: EdgeInsets.all(3.5.w),
                                       decoration: BoxDecoration(
-                                        color: white,
+                                        color: logoBackground,
                                         borderRadius: BorderRadius.circular(
                                           4.w,
                                         ),
-                                        border: Border.all(
-                                          color: blueGrey.withValues(
-                                            alpha: 0.15,
-                                          ),
-                                        ),
+                                        border: Border.all(color: logoBorder),
                                       ),
                                       child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
+                                          // Location Icon
                                           Container(
                                             padding: EdgeInsets.all(3.w),
                                             decoration: BoxDecoration(
-                                              color: electricBlue.withValues(
-                                                alpha: 0.1,
+                                              color: splashCyan.withValues(
+                                                alpha: 0.12,
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(3.w),
                                             ),
                                             child: const Icon(
                                               Icons.location_on_rounded,
-                                              color: electricBlue,
+                                              color: splashCyan,
                                             ),
                                           ),
+
                                           gapW(3.w),
+
+                                          // Location Details
                                           Expanded(
                                             child: Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 customTxt(
-                                                  "Location Record",
-                                                  14,
-                                                  navyBlue,
+                                                  record.locationName,
+                                                  16,
+                                                  white,
                                                   FontWeight.w700,
                                                 ),
-                                                gapH(1.w),
+                                                gapH(1.5.w),
+
                                                 customTxt(
-                                                  "${record.latitude.toStringAsFixed(5)}, ${record.longitude.toStringAsFixed(5)}",
-                                                  13,
-                                                  blueGrey,
-                                                  FontWeight.w500,
+                                                  "Latitude: ${record.latitude.toStringAsFixed(5)}",
+                                                  14,
+                                                  splashText,
+                                                  FontWeight.w700,
                                                 ),
-                                                gapH(1.w),
+                                                gapH(0.8.w),
+
                                                 customTxt(
-                                                  record.timestamp
-                                                      .toLocal()
-                                                      .toString()
-                                                      .substring(0, 19),
-                                                  11,
-                                                  blueGrey,
-                                                  FontWeight.w400,
+                                                  "Longitude: ${record.longitude.toStringAsFixed(5)}",
+                                                  14,
+                                                  splashText,
+                                                  FontWeight.w700,
+                                                ),
+                                                gapH(1.5.w),
+
+                                                customTxt(
+                                                  "Date: $date",
+                                                  12,
+                                                  loadingText,
+                                                  FontWeight.w600,
+                                                ),
+                                                gapH(0.8.w),
+
+                                                customTxt(
+                                                  "Time: $time",
+                                                  12,
+                                                  loadingText,
+                                                  FontWeight.w600,
                                                 ),
                                               ],
                                             ),
                                           ),
+
                                           gapW(1.w),
+
+                                          // Sync Status
                                           Column(
                                             children: [
                                               Icon(
@@ -263,7 +289,7 @@ class TrackingView extends StatelessWidget {
                                                 record.isSynced
                                                     ? "Synced"
                                                     : "Pending",
-                                                11,
+                                                12,
                                                 record.isSynced ? grn : orang,
                                                 FontWeight.w600,
                                               ),

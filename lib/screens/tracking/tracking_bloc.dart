@@ -1,4 +1,3 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/repositories/location_repository.dart';
@@ -8,9 +7,7 @@ import 'tracking_state.dart';
 class TrackingBloc extends Bloc<TrackingEvent, TrackingState> {
   final LocationRepository locationRepository;
 
-  TrackingBloc({
-    required this.locationRepository,
-  }) : super(TrackingInitial()) {
+  TrackingBloc({required this.locationRepository}) : super(TrackingInitial()) {
     on<LoadTrackingRecords>(_onLoadTrackingRecords);
     on<RefreshTrackingRecords>(_onRefreshTrackingRecords);
   }
