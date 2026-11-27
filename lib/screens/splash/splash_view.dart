@@ -49,19 +49,19 @@ class SplashView extends StatelessWidget {
               children: [
                 // Top Branding
                 Padding(
-                  padding: EdgeInsets.only(top: 4.h),
+                  padding: EdgeInsets.only(top: 5.h),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
                         Icons.gps_fixed_rounded,
                         color: splashCyan,
-                        size: 4.5.w,
+                        size: 5.w,
                       ),
                       gapW(2.w),
                       customTxt(
                         "SMART LOCATION TRACKING",
-                        11,
+                        12,
                         splashText,
                         FontWeight.w600,
                         letterSpacing: 2,
@@ -87,8 +87,8 @@ class SplashView extends StatelessWidget {
                               children: [
                                 // Logo Container
                                 Container(
-                                  height: 43.w,
-                                  width: 43.w,
+                                  height: 45.w,
+                                  width: 45.w,
                                   padding: EdgeInsets.all(2.5.w),
                                   decoration: BoxDecoration(
                                     color: logoBackground,
@@ -113,12 +113,12 @@ class SplashView extends StatelessWidget {
                                   ),
                                 ),
 
-                                gapH(8.w),
+                                gapH(4.w),
 
                                 // App Name
                                 customTxt(
                                   "DriverTrack",
-                                  34,
+                                  24,
                                   white,
                                   FontWeight.w800,
                                   letterSpacing: 1,
@@ -129,22 +129,10 @@ class SplashView extends StatelessWidget {
                                 // Tagline
                                 customTxt(
                                   "TRACK SMART. DRIVE SAFE.",
-                                  12,
+                                  14,
                                   splashCyan,
                                   FontWeight.w700,
                                   letterSpacing: 2.5,
-                                ),
-
-                                gapH(2.5.w),
-
-                                // Description
-                                customParaTxt(
-                                  "Smart Driver Location Tracking",
-                                  13,
-                                  splashText,
-                                  FontWeight.w400,
-                                  TextAlign.center,
-                                  letterSpacing: 0.5,
                                 ),
                               ],
                             ),
@@ -181,18 +169,18 @@ class SplashView extends StatelessWidget {
                             state is SplashLoading
                                 ? "INITIALIZING YOUR EXPERIENCE..."
                                 : "GETTING READY...",
-                            10,
+                            12,
                             loadingText,
                             FontWeight.w600,
                             letterSpacing: 1.5,
                           ),
 
-                          gapH(6.w),
+                          gapH(2.w),
 
                           // Footer
                           customTxt(
                             "POWERED BY DRIVERTRACK",
-                            9,
+                            14,
                             footerText,
                             FontWeight.w500,
                             letterSpacing: 2,
