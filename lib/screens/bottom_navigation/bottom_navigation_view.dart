@@ -75,11 +75,13 @@ class BottomNavigationView extends StatelessWidget {
           vertical: 1.5.w,
         ),
         decoration: BoxDecoration(
-          color: isSelected ? splashCyan.withOpacity(0.12) : Colors.transparent,
+          color: isSelected
+              ? splashCyan.withValues(alpha: 0.12)
+              : Colors.transparent,
           borderRadius: BorderRadius.circular(15),
           border: Border.all(
             color: isSelected
-                ? splashCyan.withOpacity(0.35)
+                ? splashCyan.withValues(alpha: 0.35)
                 : Colors.transparent,
           ),
         ),
