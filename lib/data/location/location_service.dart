@@ -49,6 +49,7 @@ class LocationService {
       id: _uuid.v4(),
       latitude: latitude,
       longitude: longitude,
+      locationName: 'Patna, Bihar, India',
       timestamp: DateTime.now(),
     );
 

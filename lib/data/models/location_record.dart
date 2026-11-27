@@ -6,6 +6,9 @@ class LocationRecord {
   final double latitude;
   final double longitude;
 
+  // Readable location name.
+  final String locationName;
+
   // Date and time when the location was recorded.
   final DateTime timestamp;
 
@@ -19,6 +22,7 @@ class LocationRecord {
     required this.id,
     required this.latitude,
     required this.longitude,
+    this.locationName = 'Patna, Bihar, India',
     required this.timestamp,
     this.isSynced = false,
     this.retryCount = 0,
@@ -30,6 +34,7 @@ class LocationRecord {
       'id': id,
       'latitude': latitude,
       'longitude': longitude,
+      'locationName': locationName,
       'timestamp': timestamp.toIso8601String(),
       'isSynced': isSynced,
       'retryCount': retryCount,
@@ -42,6 +47,7 @@ class LocationRecord {
       id: map['id'] as String,
       latitude: (map['latitude'] as num).toDouble(),
       longitude: (map['longitude'] as num).toDouble(),
+      locationName: map['locationName'] as String? ?? 'Patna, Bihar, India',
       timestamp: DateTime.parse(map['timestamp'] as String),
       isSynced: map['isSynced'] as bool? ?? false,
       retryCount: map['retryCount'] as int? ?? 0,
@@ -49,11 +55,16 @@ class LocationRecord {
   }
 
   // Create an updated copy without changing the original record.
-  LocationRecord copyWith({bool? isSynced, int? retryCount}) {
+  LocationRecord copyWith({
+    String? locationName,
+    bool? isSynced,
+    int? retryCount,
+  }) {
     return LocationRecord(
       id: id,
       latitude: latitude,
       longitude: longitude,
+      locationName: locationName ?? this.locationName,
       timestamp: timestamp,
       isSynced: isSynced ?? this.isSynced,
       retryCount: retryCount ?? this.retryCount,
