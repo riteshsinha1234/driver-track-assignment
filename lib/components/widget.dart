@@ -42,56 +42,6 @@ Widget customBody({
   );
 }
 
-// Bottom Navigation Bar
-Widget bottomNavigationBar(
-  BuildContext context, {
-  required int selectedIndex,
-  required VoidCallback onHomeTap,
-  required VoidCallback onTrackingTap,
-}) {
-  return Container(
-    padding: EdgeInsets.symmetric(vertical: 3.5.w),
-    decoration: BoxDecoration(
-      color: logoBackground,
-      border: Border(top: BorderSide(color: logoBorder)),
-    ),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        GestureDetector(
-          onTap: onHomeTap,
-          child: navItem(Icons.home_rounded, "Home", selectedIndex == 0),
-        ),
-        GestureDetector(
-          onTap: onTrackingTap,
-          child: navItem(
-            Icons.location_on_outlined,
-            "Tracking",
-            selectedIndex == 1,
-          ),
-        ),
-      ],
-    ),
-  );
-}
-
-// Navigation Item
-Widget navItem(IconData icon, String title, bool selected) {
-  return Column(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      Icon(icon, size: 6.w, color: selected ? splashCyan : loadingText),
-      gapH(1.2.w),
-      customTxt(
-        title,
-        14,
-        selected ? splashCyan : splashText,
-        selected ? FontWeight.w700 : FontWeight.w500,
-      ),
-    ],
-  );
-}
-
 // Action Card
 Widget actionCard(IconData icon, String title, Color color) {
   return Container(

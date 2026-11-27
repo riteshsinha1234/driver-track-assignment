@@ -3,7 +3,7 @@ import 'package:driver_track/components/image.dart';
 import 'package:driver_track/components/routers.dart';
 import 'package:driver_track/components/text.dart';
 import 'package:driver_track/components/widget.dart';
-import 'package:driver_track/screens/home/home_view.dart';
+import 'package:driver_track/screens/bottom_navigation/bottom_navigation_view.dart';
 import 'package:driver_track/screens/splash/splash_bloc.dart';
 import 'package:driver_track/screens/splash/splash_event.dart';
 import 'package:driver_track/screens/splash/splash_state.dart';
@@ -29,7 +29,7 @@ class SplashView extends StatelessWidget {
     return BlocListener<SplashBloc, SplashState>(
       listener: (context, state) {
         if (state is SplashCompleted) {
-          routePushReplacement(const HomeView());
+          routePushReplacement(const BottomNavigationView());
         }
       },
       child: customBody(
